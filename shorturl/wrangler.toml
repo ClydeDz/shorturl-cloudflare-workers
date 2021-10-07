@@ -1,0 +1,6 @@
+name = "shorturl"
+type = "javascript"
+account_id = "e9fd14e89272dcebc137bd7c422aaf05"
+workers_dev = true
+route = ""
+zone_id = "e9fd14e89272dcebc137bd7c422aaf05"
