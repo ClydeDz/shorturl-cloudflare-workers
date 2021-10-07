@@ -1,12 +1,8 @@
 const statusCode = 301
 
-const urls = {
-  "google": "https://www.google.com",
-  "facebook": "https://www.facebook.com",
-}
-
-function getRedirectURL(pathname) {
-  return urls[pathname] || "/";
+async function getRedirectURL(pathname) {
+  let value = await SHORTURLS.get(pathname)
+  return value || "/";
 }
 
 async function handleRequest(request) {
@@ -19,7 +15,7 @@ async function handleRequest(request) {
     })
   }
 
-  const redirectURL = getRedirectURL(pathname.replace(/^\//, ""))
+  const redirectURL = await getRedirectURL(pathname.replace(/^\//, ""))
   if (redirectURL === "/") {
     return new Response("Hello worker!", {
       headers: { "content-type": "text/plain" }
