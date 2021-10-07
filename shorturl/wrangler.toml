@@ -6,5 +6,5 @@ route = ""
 zone_id = "e9fd14e89272dcebc137bd7c422aaf05"
 
 kv_namespaces = [
-    { binding = "SHORTURLS", id = "14ec4e4e5ee04275ac223ff8b7ed7756" }
+    { binding = "SHORTURLS", preview_id = "5655fdafebc74b30ae7478712aae7b8b", id = "14ec4e4e5ee04275ac223ff8b7ed7756" }
 ]
