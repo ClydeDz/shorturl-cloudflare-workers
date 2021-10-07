@@ -4,3 +4,7 @@ account_id = "e9fd14e89272dcebc137bd7c422aaf05"
 workers_dev = true
 route = ""
 zone_id = "e9fd14e89272dcebc137bd7c422aaf05"
+
+kv_namespaces = [
+    { binding = "SHORTURLS", id = "14ec4e4e5ee04275ac223ff8b7ed7756" }
+]
