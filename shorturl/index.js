@@ -1,10 +1,17 @@
-const base = "https://example.com"
 const statusCode = 301
+
+const urls = {
+  "google": "https://www.google.com",
+  "facebook": "https://www.facebook.com",
+}
+
+function getRedirectURL(pathname) {
+  return urls[pathname] || "/";
+}
 
 async function handleRequest(request) {
   const url = new URL(request.url)
   const { pathname } = url
-  const destinationURL = base + pathname
 
   if (pathname === "/") {
     return new Response("Hello worker!", {
@@ -12,7 +19,14 @@ async function handleRequest(request) {
     })
   }
 
-  return Response.redirect(destinationURL, statusCode)
+  const redirectURL = getRedirectURL(pathname.replace(/^\//, ""))
+  if (redirectURL === "/") {
+    return new Response("Hello worker!", {
+      headers: { "content-type": "text/plain" }
+    })
+  }
+
+  return Response.redirect(redirectURL, statusCode)
 }
 
 addEventListener("fetch", event => {
