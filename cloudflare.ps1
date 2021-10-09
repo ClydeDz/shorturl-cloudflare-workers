@@ -11,6 +11,8 @@ wrangler dev
 
 wrangler generate shorturl https://github.com/cloudflare/worker-template
 
+wrangler generate createshorturl https://github.com/cloudflare/worker-template
+
 # Create a KV namespace and add seed data
 
 wrangler kv:namespace create "SHORTURLS"
