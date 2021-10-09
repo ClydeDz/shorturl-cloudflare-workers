@@ -17,7 +17,7 @@ async function handleRequest(request) {
 
   const redirectURL = await getRedirectURL(pathname.replace(/^\//, ""))
   if (redirectURL === "/") {
-    return new Response("Hello worker!", {
+    return new Response("Not redirect URL found", {
       headers: { "content-type": "text/plain" }
     })
   }

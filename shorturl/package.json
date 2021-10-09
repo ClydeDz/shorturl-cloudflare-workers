@@ -1,14 +1,13 @@
 {
   "private": true,
   "name": "shorturl",
-  "version": "1.0.0",
-  "description": "A template for kick starting a Cloudflare Workers project",
+  "version": "1.0.1",
+  "description": "Cloudflare Worker to redirect you to a website that corresponds with the short url supplied.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --write '**/*.{js,css,json,md}'"
   },
-  "author": "clydedz <clyd94@gmail.com>",
+  "author": "Clyde D'Souza",
   "license": "MIT",
   "devDependencies": {
     "prettier": "^1.18.2"
