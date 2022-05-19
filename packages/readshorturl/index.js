@@ -1,6 +1,6 @@
 const getValuePair = async key => {
   const value = await THEE.get(key)
-  return { key, value }
+  return value ? { key, value } : null
 }
 
 const getAll = async () => {
@@ -11,12 +11,12 @@ const getAll = async () => {
       keyValuePairs.push(await getValuePair(allShortUrls.keys[i].name))
     }
   }
-  return new Response(keyValuePairs ? JSON.stringify(keyValuePairs) : '')
+  return new Response(keyValuePairs ? JSON.stringify(keyValuePairs) : `[]`)
 }
 
 const getOne = async key => {
   const urlKeyValue = await getValuePair(key)
-  return new Response(urlKeyValue ? JSON.stringify(urlKeyValue) : '')
+  return new Response(urlKeyValue ? JSON.stringify(urlKeyValue) : `[]`)
 }
 
 addEventListener('fetch', event => {

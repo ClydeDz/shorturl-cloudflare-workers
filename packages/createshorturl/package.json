@@ -6,7 +6,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "format": "prettier --write '**/*.{js,css,json,md}'"
+    "format": "prettier --write '**/*.{js,css,json,md}'",
+    "publish": "wrangler publish"
   },
   "author": "Cris Shaki <cmshaki@gmail.com>",
   "license": "MIT",
