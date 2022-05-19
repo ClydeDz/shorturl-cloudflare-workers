@@ -14,14 +14,26 @@ jobs:
       - name: Checkout GitHub repo      
         uses: actions/checkout@v2
 
-      - name: Publish shorturl Worker
+      - name: Publish createshorturl Worker
         uses: cloudflare/wrangler-action@1.3.0
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
-          workingDirectory: 'shorturl'
+          workingDirectory: 'packages/readshorturl'
       
       - name: Publish createshorturl Worker
         uses: cloudflare/wrangler-action@1.3.0
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
-          workingDirectory: 'createshorturl'
+          workingDirectory: 'packages/createshorturl'
+
+      - name: Publish updateshorturl Worker
+        uses: cloudflare/wrangler-action@1.3.0
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          workingDirectory: 'packages/updateshorturl'
+
+      - name: Publish deleteshorturl Worker
+        uses: cloudflare/wrangler-action@1.3.0
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          workingDirectory: 'packages/deleteshorturl'

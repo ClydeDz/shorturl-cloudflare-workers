@@ -1,0 +1,12 @@
+name = "readshorturl"
+type = "javascript"
+
+account_id = "f0f636c746c8673c3905e9104b385251"
+workers_dev = true
+route = "https://api.thee.it/urls/*"
+zone_id = "a07ab78e57d697d7d09198e6593bf0a4"
+compatibility_date = "2022-05-17"
+
+kv_namespaces = [
+  { binding = "THEE", preview_id = "f054e99584004917b5eb283d28855286", id = "d0abe1cc0599453a97f8de5cabbea8fb" }
+]

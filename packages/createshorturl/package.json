@@ -1,13 +1,14 @@
 {
   "private": true,
   "name": "createshorturl",
-  "version": "1.0.1",
-  "description": "A Cloudflare Worker to create a short URL",
+  "version": "1.0.0",
+  "description": "A template for kick starting a Cloudflare Workers project",
   "main": "index.js",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --write '**/*.{js,css,json,md}'"
   },
-  "author": "Clyde D'Souza",
+  "author": "Cris Shaki <cmshaki@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "prettier": "^1.18.2"

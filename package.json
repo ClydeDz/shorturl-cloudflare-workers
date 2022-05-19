@@ -1,0 +1,22 @@
+{
+  "name": "shorturl-cloudflare-workers",
+  "version": "1.0.0",
+  "description": "This app is a short URL service like bit.ly and the likes. We're also automatically deploying this Cloudflare Worker using GitHub Actions.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dilmaheu/shorturl-cloudflare-workers.git"
+  },
+  "author": "cmshaki",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dilmaheu/shorturl-cloudflare-workers/issues"
+  },
+  "homepage": "https://github.com/dilmaheu/shorturl-cloudflare-workers#readme",
+  "dependencies": {
+    "lerna": "^4.0.0"
+  }
+}
