@@ -1,4 +1,12 @@
-const getValue = async key => {
+const headers = new Headers({
+  'Content-Type': 'application/json',
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': '*',
+  'Access-Control-Allow-Methods': 'OPTIONS, PUT',
+  'Access-Control-Max-Age': '-1',
+})
+
+const getValue = async (key) => {
   const value = await THEE.get(key)
   return value
 }
@@ -6,8 +14,9 @@ const getValue = async key => {
 const updateUrl = async (requestBody, url) => {
   const getValue = await THEE.get(url)
   if (!getValue) {
-    return new Response('Content not found: No such short url exits', {
-      status: 404,
+    return new Response('Content not found: No such short url exists', {
+      status: 400,
+      headers,
     })
   }
   if (requestBody?.uniqueKey && requestBody?.website) {
@@ -16,16 +25,21 @@ const updateUrl = async (requestBody, url) => {
       await THEE.put(requestBody.uniqueKey, requestBody.website)
       return new Response(
         `Successfully updated - ${JSON.stringify(requestBody)}`,
+        {
+          status: 200,
+          headers,
+        },
       )
     }
   }
-  return new Response(
-    'Bad Request - Provide both a uniqueKey and a website property in your request body',
-    { status: 400 },
-  )
+  return new Response(null, {
+    headers,
+    status: 415,
+    statusText: 'Unsupported Media Type',
+  })
 }
 
-const readRequestBody = async request => {
+const readRequestBody = async (request) => {
   const { headers } = request
   const contentType = headers.get('content-type') || ''
 
@@ -44,13 +58,37 @@ const handleRequest = async (request, url) => {
   }
   return new Response('Bad Request - Provide a application/json body type', {
     status: 400,
+    headers,
   })
 }
 
-addEventListener('fetch', event => {
+const handleOptions = (request) => {
+  if (
+    request.headers.get('Origin') !== null &&
+    request.headers.get('Access-Control-Request-Method') !== null &&
+    request.headers.get('Access-Control-Request-Headers') !== null
+  ) {
+    // Handle CORS pre-flight request.
+    return new Response(null, {
+      headers,
+    })
+  } else {
+    // Handle standard OPTIONS request.
+    return new Response(null, {
+      headers: {
+        Allow: 'PUT, OPTIONS',
+      },
+    })
+  }
+}
+
+addEventListener('fetch', (event) => {
   const { request } = event
   const url = new URL(request.url)
 
+  if (request.method === 'OPTIONS') {
+    return event.respondWith(handleOptions(request))
+  }
   if (request.method == 'PUT') {
     const newUrl = url.pathname.replace(/^\/|\/$/gi, '')
     const noWordsRegex = /\W/gi
@@ -58,6 +96,7 @@ addEventListener('fetch', event => {
       return event.respondWith(handleRequest(request, newUrl))
     }
   }
-
-  event.respondWith(new Response('Content Not Found', { status: 404 }))
+  return event.respondWith(
+    new Response(`Method Not Allowed`, { headers, status: 405 }),
+  )
 })
