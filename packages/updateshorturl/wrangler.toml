@@ -3,7 +3,7 @@ type = "javascript"
 
 account_id = "f0f636c746c8673c3905e9104b385251"
 workers_dev = true
-route = "https://api.thee.it/update/*"
+route = "api.thee.it/update/*"
 zone_id = "a07ab78e57d697d7d09198e6593bf0a4"
 compatibility_date = "2022-05-17"
 
