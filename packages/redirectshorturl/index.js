@@ -3,7 +3,8 @@ const statusCode = 301
 
 const getOne = async (key) => {
   const urlKeyValue = await getValuePair(key)
-  return new Response.redirect(urlKeyValue, statusCode)
+  if (urlKeyValue) return Response.redirect(urlKeyValue, statusCode)
+  return new Response(null, { status: 404, statusText: 'Content not Found' })
 }
 
 const handleOptions = (request) => {
@@ -27,7 +28,7 @@ const handleOptions = (request) => {
 }
 
 const handleRequest = () => {
-  return new Response.redirect(destinationUrl, statusCode)
+  return Response.redirect(destinationUrl, statusCode)
 }
 
 addEventListener('fetch', (event) => {
