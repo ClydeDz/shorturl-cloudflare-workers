@@ -1,8 +1,13 @@
 const destinationUrl = 'https://dilmahtea.nl'
 const statusCode = 301
 
+const getValue = async (key) => {
+  const value = await THEE.get(key)
+  return value
+}
+
 const getOne = async (key) => {
-  const urlKeyValue = await getValuePair(key)
+  const urlKeyValue = await getValue(key)
   if (urlKeyValue) return Response.redirect(urlKeyValue, statusCode)
   return new Response(null, { status: 404, statusText: 'Content not Found' })
 }
